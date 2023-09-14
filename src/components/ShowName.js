@@ -1,4 +1,3 @@
-// En App.js se define la variable show
 
 import React from 'react';
 
