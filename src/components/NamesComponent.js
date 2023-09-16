@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 function NamesComponent() {
   const [users, setUsers] = useState(['Usuario1', 'Usuario2']);
+  const hasAddedUser3 = useRef(false);
 
   useEffect(() => {
-    setUsers((prevUsers) => [...prevUsers, 'Usuario3']);
+    if (!hasAddedUser3.current) {
+      setUsers((prevUsers) => [...prevUsers, 'Usuario3']);
+      hasAddedUser3.current = true;
+    }
 
     return () => {
       console.log('¡Componente destruido!');
@@ -14,8 +18,8 @@ function NamesComponent() {
   return (
     <div>
       <ul>
-        {users.map((user, index) => (
-          <li key={index}>{user}</li>
+        {users.map((user) => (
+          <li key={user}>{user}</li>
         ))}
       </ul>
     </div>
